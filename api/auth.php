@@ -36,14 +36,14 @@ if($row = $result->fetch_assoc()) {
         "login" => $row["login"]
     ];
     $_SESSION["user-name"] = $row["name"];
-    header ('Location: ../index.php');
+    header ('Location: modules/mod_list.php');
     exit();
 } else {
     $response = [
         "status" => false
     ];
     $_SESSION["false-auth"] = "Неправильный пароль или логин";
-    header ('Location: ../index.php');
+    header ('Location: modules/login.php');
     exit();
 }
 
