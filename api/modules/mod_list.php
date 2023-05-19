@@ -32,7 +32,9 @@
     <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Modal Title</h2>
-        <p>Modal content goes here.</p>
+        <p class="year_sets">Modal content goes here.</p>
+        <p class="number_persons"></p>
+        <p class="name_elder"></p>
     </div>
 </div>
 
@@ -117,7 +119,7 @@ echo "
 while ($row = $result->fetch_assoc()) {
     echo "
         <div>
-        <button id='openModal' class='btn_group'>".$row['group_name']."</button>
+        <button id='$row[id_group]' class='openModal'>".$row['group_name']."</button>
 
     ";
 
@@ -136,7 +138,11 @@ while ($row = $result->fetch_assoc()) {
 
     $group_name = $row['group_name'];
 
+    $_SESSION['id_group'] = $group_id;
+
     echo $group_name;
+
+
     
     $result2 = $this->connect->query($sql2);
 
@@ -150,9 +156,7 @@ while ($row = $result->fetch_assoc()) {
 
         
     }
-
     echo "</div>";
-
 }
 
 echo "</div>";
