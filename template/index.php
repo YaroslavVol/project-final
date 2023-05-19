@@ -12,7 +12,7 @@
 <body>
     
 <?php
-    $this->get_login();
+    $this->get_content();
 ?>
 
 </body>
