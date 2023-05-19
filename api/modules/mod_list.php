@@ -28,6 +28,11 @@
     <input type="submit" value="Click">
 </form>
 
+<p class="group" data-id="1">I-307</p>
+<p class="group" data-id="2">I-207</p>
+<p class="group" data-id="3">A-406</p>
+
+
 <div id="modal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
@@ -119,7 +124,6 @@ echo "
 while ($row = $result->fetch_assoc()) {
     echo "
         <div>
-        <button id='$row[id_group]' class='openModal'>".$row['group_name']."</button>
 
     ";
 

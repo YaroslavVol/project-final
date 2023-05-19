@@ -9,7 +9,7 @@ if($connect->connect_error){
 }
 $connect->set_charset("utf8");
 
-$id_group = $_SESSION['id_group'];
+$id_group = $_GET['id'];
 
 $sql = "
     SELECT * FROM `groups` WHERE `id_group` = $id_group

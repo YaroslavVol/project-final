@@ -1,10 +1,14 @@
 const modal = document.getElementById('modal');
 const closeBtn = document.querySelector('.close');
 
-const openModal = document.querySelector('.openModal')
+const openModal = document.querySelectorAll(".group")
+
+
 
 async function getModal(event) {
     event.preventDefault()
+
+    let id = event.target.dataset.id
 
     modal.style.display = 'block';
     const modalTitle = document.querySelector('.modal-content h2');
@@ -13,8 +17,8 @@ async function getModal(event) {
     const modalPerson = document.querySelector('.number_persons');
     const modalElder = document.querySelector('.name_elder');
 
-    const response = await fetch("api/data.php", {
-        method: 'POST',
+    const response = await fetch("api/data.php?id=" + id, {
+        method: 'GET',
         'Content-Type': 'application/json',
         // body: data
     });
@@ -39,7 +43,11 @@ async function getModal(event) {
     });
 }
 
-openModal.addEventListener('click', getModal)
+openModal.forEach((group) => {
+    group.addEventListener('click', getModal)
+})
+
+// openModal.addEventListener('click', getModal)
 
 
 // "group_name" => $row["group_name"],
