@@ -1,3 +1,40 @@
+<?php 
+if (isset($_SESSION["user-name"])) {
+    echo $_SESSION["user-name"];
+    echo " <a href='profile.php'>Перейти в профиль</a>";
+    echo "
+    <form method='POST' action='api/exit.php'>
+        <input type='submit' value='Выйти'>
+    </form>
+    ";
+} else {
+    echo "
+    <form id='form-auth' method='POST' action='api/auth.php'>
+        <input type='text' id='login' name='login' placeholder='введите логин' required><br>
+
+        <input type='password' id='password' name='password' placeholder='введите пароль' required><br>
+
+        <input type='submit' value='Войти'>
+    </form>
+    ";
+
+}
+?> 
+
+<p class="profile">
+        
+</p>
+
+
+<!-- <form id="form-auth" method="POST" action="api/auth.php">
+    <input type="text" id="login" name="login" placeholder="введите логин" required><br>
+
+    <input type="password" id="password" name="password" placeholder="введите пароль" required><br>
+
+    <input type="submit" value="войти">
+</form> -->
+
+
 <form method="POST">
     <select name="groups" id="groups">
         <?php
@@ -36,8 +73,8 @@
 <div id="modal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>Modal Title</h2>
-        <p class="year_sets">Modal content goes here.</p>
+        <h2></h2>
+        <p class="year_sets"></p>
         <p class="number_persons"></p>
         <p class="name_elder"></p>
     </div>
@@ -51,7 +88,7 @@ session_start();
 $sql_sort = "";
 if (isset($_POST['groups'])) {
     $id = $this->formatstr($_POST['groups']);
-    $sql_sort .= "
+    $sql_sort = "
         SELECT * FROM `groups` WHERE `id_group` = $id;
     ";
 }
@@ -66,16 +103,7 @@ if (isset($_POST['days'])) {
 
 
 
-if (isset($_SESSION["user-name"])) {
-    echo $_SESSION["user-name"];
-    echo "<br>";
-    // echo "<a href='profile.php'>перейти в профиль</a>";
-    echo '
-    <form action="../exit.php" method="POST">
-        <input type="submit" value="Выйти">
-    </form> 
-    ';
-}
+
 
 
 
@@ -102,7 +130,10 @@ if (isset($_SESSION["user-name"])) {
 
 $sql = "SELECT * FROM `groups`";
 
-$sql3 = "SELECT * FROM `groups` WHERE `id_group` = 1";
+// if (!$sql_sort) {
+//     $sql_sort = "SELECT * FROM `groups` WHERE `id_group` = 1";
+// }
+
 
 // GET ONE GROUP
 $result=$this->connect->query($sql_sort);
@@ -124,6 +155,7 @@ echo "
 while ($row = $result->fetch_assoc()) {
     echo "
         <div>
+
 
     ";
 

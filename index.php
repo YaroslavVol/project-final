@@ -2,6 +2,8 @@
 
 header("Content-Type:text/html; charset=UTF-8;");
 
+session_start();
+
 require_once ("api/config.php");
 require_once ("api/core.php");
 
